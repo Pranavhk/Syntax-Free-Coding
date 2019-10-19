@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<title>Welcome to the app</title>
+<link rel="stylesheet" type="text/css" href="{{ url_for('static',filename = 'style.css') }}">
+<link href="http://fonts.googleapis.com/css?family=Montserrat:400,700%7CPT+serif:400,700,400italic" rel='stylesheet'>
+<link href="https://fonts.googleapis.com/css?family=Montserrat|Open+Sans" rel="stylesheet">
+<body style="background-image: url({{ url_for('static', filename='background_image.jpg') }})">
+<div class="content">
+	<div class="leftside">
+		<div class = "upper">
+			<h1 > Enter a command </h1>
+			<form method="POST">
+				<input name="text" type="text">
+				<br>
+					<p align="left">
+					<input type="submit" name = "convert" value="Convert">
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Intent : &nbsp;{{ actiontype }}
+					</p>
+					</form>
+					
+		</div>
+		<div class= "lower">
+				<h1 > Terminal </h1>
+				<p> {{ output }} </p>
+		</div>
+	</div>
+	<div class="rightside">
+			<h1> Output Code:</h1>
+			<ol> 
+				{%for i in code%}
+					{% if i[0] == ' '%}
+						<li>&nbsp;&nbsp;&nbsp;&nbsp;{{i}}</li>
+					{% else %}
+						<li>{{i}}</li> 
+					{% endif %}   				
+				{%endfor%} 
+			</ol> 
+			<p align="right" >
+				<form method="POST">
+				<input type="submit" name = "run" value="Run">
+				<input type="submit" name = "newfile" value="New File">
+				</form>
+			</p>
+	</div>
+</div>
+</body>
